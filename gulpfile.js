@@ -48,7 +48,7 @@ gulp.task('serve', function() {
     });
 
     gulp.watch('app/*.html').on('change', browserSync.reload );
-    gulp.watch('app/scss/**/*.scss').on('change', cssInject);
+    gulp.watch(['app/scss/**/*.scss'], ['cssInject']); 
 
 });
 
