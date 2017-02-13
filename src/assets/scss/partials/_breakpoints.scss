@@ -1,0 +1,40 @@
+$breakpoints: (
+    small: 0,
+    medium: 640px,
+    large: 1024px,
+    xlarge: 1200px,
+) !default;
+
+$zero-breakpoint: small !default;
+
+@if nth(map-values($breakpoints), 1) != 0 {
+    @error 'Your smallest breakpoint in $breakpoints must be set to "0".';
+}
+@else {
+    $zero-breakpoint: nth(map-keys($breakpoints), 1);
+}
+
+$breakpoint-classes: (small medium large);
+
+@function breakpoint($val: $zero-breakpoint) {
+    $breakpoint: nth($val, 1); /* Size of breakpoint */
+    $query-str: ''; /* Eventual output */
+    $direction: if(length($val) > 1, nth($val, 2), up); /* Direction of MQ (down, up, only) */
+    $breakpoint-max: 0; /* Value for max-width queries */
+    $is-named: false;
+
+    // Find named breakpoints
+    @if type-of($breakpoint) == 'string' {
+        @if map-has-key($breakpoints, $breakpoint) {
+            @if $direction == 'only' or $direction == 'down' {
+                $breakpoint-max: 0;
+                // Need a function here
+                // pull keys(values?) from map
+                // find index of $breakpoint
+                // increment index by 1
+                // return the breakpoint at that index
+            }
+        }
+    }
+
+}
