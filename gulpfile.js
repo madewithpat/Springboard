@@ -6,17 +6,21 @@ const webpack = require('webpack');
 const del = require('del');
 const rename = require('gulp-rename');
 
-gulp.task('default', ['setup-dist', 'sass', 'javascript'], () => {
+gulp.task('default', ['setup-temp', 'sass', 'javascript'], () => {
     browser.init({
         port: 7000,
         notify: false,
         server: {
-            baseDir: 'dist'
+            baseDir: 'src'
         }
     });
     gulp.watch('src/**/*.html').on('change', browser.reload);
     gulp.watch('src/scss/**/*.scss', ['sass']);
     gulp.watch('src/js/**/*.js', ['javascript'], browser.reload);     
+});
+
+gulp.task('reload', () => {
+    browser.reload();
 });
 
 gulp.task('sass', () => {
@@ -28,7 +32,7 @@ gulp.task('sass', () => {
         .pipe(autoprefixer({
             browsers: ['last 2 versions', '> 5%']
         }))
-        .pipe(gulp.dest('./dist'))
+        .pipe(gulp.dest('./src/temp'))
         .pipe(browser.reload({ stream: true }));
 });
 
@@ -43,12 +47,7 @@ gulp.task('javascript', (callback) => {
     });
 });
 
-gulp.task('setup-dist', ['clean-dist', 'copy-pages', 'copy-normalize']);
-
-gulp.task('copy-pages', () => {
-    return gulp.src('src/**/*.html')
-                .pipe(gulp.dest('./dist'));
-});
+gulp.task('setup-temp', ['clean-temp', 'copy-normalize']);
 
 gulp.task('copy-normalize', () => {
     return gulp.src('node_modules/normalize.css/normalize.css')
@@ -56,6 +55,6 @@ gulp.task('copy-normalize', () => {
                 .pipe(gulp.dest('src/scss/vendor'));
 });
 
-gulp.task('clean-dist', () => {
-    return del('./dist');
+gulp.task('clean-temp', () => {
+    return del('./src/temp');
 })
