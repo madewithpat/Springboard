@@ -9,17 +9,19 @@
   "author": "poutler",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.22.1",
-    "babel-loader": "^6.2.10",
-    "babel-preset-es2015": "^6.22.0",
-    "browser-sync": "^2.18.7",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "browser-sync": "^2.18.13",
+    "del": "^3.0.0",
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "webpack": "^2.2.1"
+    "webpack": "^3.4.1"
   },
   "dependencies": {
-    "jquery": "^3.1.1",
-    "normalize.css": "^5.0.0"
+    "jquery": "^3.2.1",
+    "normalize.css": "^7.0.0"
   }
 }

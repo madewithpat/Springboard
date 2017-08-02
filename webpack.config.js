@@ -1,7 +1,7 @@
 module.exports = {
     entry: "./src/js/App.js",
     output: {
-        path: "./src/temp/js",
+        path: __dirname + "/dist",
         filename: "App.js"
     },
     module: {
@@ -9,7 +9,7 @@ module.exports = {
             {
                 loader: 'babel-loader',
                 query: {
-                    presets: ['es2015']
+                    presets: ['env']
                 },
                 test: /\.js$/,
                 exclude: /node_modules/
